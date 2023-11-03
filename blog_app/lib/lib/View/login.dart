@@ -1,4 +1,3 @@
-
 import 'package:blog_app/lib/View/home.dart';
 import 'package:blog_app/lib/View/signup.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
       child: SingleChildScrollView(
         child: Column(children: [
           title,
-         Padding(padding: const EdgeInsets.only(bottom: 30), child: loginSubtitle,),  
+          Padding(
+            padding: const EdgeInsets.only(bottom: 30),
+            child: loginSubtitle,
+          ),
           textField(labelEmail, false, loginEmailTextFieldController),
           textField(labelPassword, true, loginPasswordTextFieldController),
           Container(
@@ -31,29 +33,28 @@ class _MyLoginPageState extends State<MyLoginPage> {
             margin: const EdgeInsets.fromLTRB(30, 15, 30, 5),
             child: ElevatedButton(
               onPressed: () {
-                  if (isValidPassword(signupPasswordTextFieldController.text) &&
-                  isValidEmail(signupEmailTextFieldController.text) &&
-                  isValidUsername(signupUsernameTextFieldController.text)) {
-                Get.to(() => const MyHomePage());
-              } else {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Warning'),
-                      content: const Text('Check the textFields again'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
+                if (isValidPassword(signupPasswordTextFieldController.text) &&
+                    isValidEmail(signupEmailTextFieldController.text)) {
+                  Get.to(() => const MyHomePage());
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Warning'),
+                        content: const Text('Check the textFields again'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Close'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
               style: buttonStyle,
               child: loginButton,
